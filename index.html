@@ -1,29 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src=" https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <link rel="stylesheet" href="./src/css/index.css">
-<title>Document</title>
-</head>
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: RGB(245,245,245);
+            font-size: 14px;
+        }
+        h1{
+            font-size: 18px;
+        }
+        .el-menu{
+            z-index:99;
+            position: sticky;
+            top: 0;
+            padding-left: 35%;
+        }
+        a{
+            text-decoration: none;
+        }
+        .el-carousel__item h3 {
+            color: #475669;
+            font-size: 14px;
+            opacity: 0.75;
+            line-height: 200px;
+            margin: 0;
+        }
 
+        .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+        }
+
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #d3dce6;
+        }
+        .swiper{
+            margin-top:36px;
+            min-width: 1560px;
+        }
+        .swiper-img{
+            width:100%;
+            height:100%;
+        }
+        .swiper img{
+            width:100%;
+            height:100%;
+        }
+        .first-foot{
+
+            margin-top: 230px;
+            height:140px;
+            background: #475669;
+        }
+        .first-box{
+            width:1020px;
+            margin:20px auto;
+        }
+        .first-img {
+            padding:20px;
+            background: white;
+        }
+        .first-img img {
+            width:100%;
+            height:100%;
+        }
+        .first-right img{
+            width:100%;
+            height:100%;
+        }
+        .first-right{
+            position: fixed;
+            top:80px;
+            background: white;
+            padding:20px;
+        }
+        .first-right .block{
+            margin-top: 20px;
+        }
+        .first-new-box{
+            width:1150px;
+            margin:36px auto;
+
+        }
+        .new-box{
+            height:513px;
+            padding:12px;
+            background: white;
+            color:RGB(195,166,153)
+        }
+        .new-box>div{
+            padding:6px;
+        }
+        .new-box:hover{
+            cursor: pointer;
+        }
+        .new-box:hover h1{
+            color:RGB(255,102,0)
+        }
+        .new-box img{
+            width:100%;
+            height:auto;
+        }
+        .new-box p{
+            overflow: hidden;
+        }
+        .el-row{
+            margin:24px 0;
+        }
+        .el-col{
+            height:100%;
+        }
+        .new-message{
+            width:1000px;
+            margin:36px auto;
+            background: white;
+            padding:24px;
+        }
+        .new-message-title{
+            text-align: center;
+            border-bottom: 1px solid #99a9bf;
+        }
+        .new-message-title h1{
+            line-height: 50px;
+            font-size: 30px;
+        }
+        .new-message-title p {
+            line-height: 40px;
+        }
+        .new-message-content{
+            font-size: 15px;
+            margin:24px 0;
+        }
+        .new-message-content p{
+            text-indent: 30px;
+        }
+        .new-message-content img{
+            width:800px;
+            height:600px;
+            margin:24px 100px;
+        }
+    </style>
+</head>
 <body>
 
 <div id="app">
-
+    <el-menu
+            :default-active="activeIndex2"
+            class="el-menu-demo"
+            mode="horizontal"
+            @select="handleSelect"
+            background-color="white"
+            text-color="black"
+            active-text-color="#f690b7"
+            router="true"
+    >
+        <el-menu-item index="/bar">Home</el-menu-item>
+        <el-menu-item index="/bar2">new</el-menu-item>
+        <el-menu-item index="/foo">img-swiper</el-menu-item>
+        <el-menu-item index="/bar1">news-message</el-menu-item>
+    </el-menu>
+    <div>
+        <router-view></router-view>
+    </div>
 </div>
 
+<script type="text/x-template" id="tem">
+    <div class="swiper">
+    <el-carousel :interval="2000" type="card" height="470px">
+        <el-carousel-item v-for="item in images" :key="item">
+            <div class="swiper-img">
+            <img :src="item.imageIcon" alt="">
+            </div>
+        </el-carousel-item>
+    </el-carousel>
+        <div class="first-foot">
+
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="tem1">
+    <div class="first-box">
+    <el-row :gutter="20">
+        <el-col :span="16">
+            <div class="first-img">
+                <img src="./static/images/005.png" alt="">
+            </div>
+        </el-col>
+        <el-col :span="8">
+            <div class="first-right">
+                <img src="./static/images/006.jpg" alt="">
+                    <div class="block">
+                        <el-carousel :interval="2000" height="350px">
+                            <el-carousel-item v-for="item in images" :key="item">
+                                <img :src="item.imageIcon" alt="">
+                            </el-carousel-item>
+                        </el-carousel>
+                    </div>
+            </div>
+        </el-col>
+    </el-row>
+    </div>
+</script>
+
+<script type="text/x-template" id="tem2">
+    <div class="new-message">
+        <div class="new-message-title">
+            <h1>清扬携手林彦俊带你告别扁塌「制霸」全場</h1>
+            <p>发表于：2019-06-10作者 **时尚网来源于：**时尚网</p>
+        </div>
+        <div class="new-message-content">
+            <p>6月5日，联合利华旗下去屑洗护品牌清扬,于上海举办花言橘语粉丝答谢会, 品牌大使林彦俊现身推广新品-清扬植觉春樱微醺洗护系列，并与现场粉丝近距离互动，还亲手制作花盒及象征希望的花环，祝愿即将高考的粉丝们，贴心送上满满福利。</p>
+            <img src="./static/images/001.jpg" alt="">
+            <p>
+                KEDDO对于设计理念和产品用料的坚持。坚持“经典，百搭，舒适”的设计理念，使得KEDDO小白鞋系列在全球销售已超过1000万双，该系列持续登上全球热销榜；同样，坚持使用天然橡胶材质，潮流时尚的设计，使KEDDO曾经成为雨靴的代名词，2010-2015年连续5年在位居全球雨靴销售榜首。
+            </p>
+            <img src="./static/images/002.jpg" alt="">
+            <p>此次KEDDO2018春夏大片选用了无畏浮华的主题,携爱上超模选手庞莹共同演绎诠释时尚精神。并发布了全新春夏新款。</p>
+            <img src="./static/images/003.jpg" alt="">
+            <p>Discover interesting projects and people to populate your personal news feed.
+                Your news feed helps you keep up with recent activity on repositories you watch and people you follow.</p>
+            <img src="./static/images/004.jpg" alt="">
+        </div>
+    </div>
+</script>
+
+
+
+<script type="text/x-template" id="tem3">
+    <div class="first-new-box">
+    <el-row :gutter="20">
+        <el-col :span="9">
+            <div class="new-box" @click="goNew()">
+                <img src="./static/images/010.jpg" alt="">
+                <div><h1>真年轻 真生动 德玫恩®重新定义美•2019焕新绽放</h1></div>
+                <div><p>“美，对于我来说涵盖了一切内容! 是态度，是使命，是人格。就像我们美容业所蕴含的那样，无论是时下备受关注的，还是即将诞生的各类美容产品，我们都竭力让其涵盖美的方方面面。” —— 德玫恩®品牌创始人LARS KARNERUD</p></div>
+            </div>
+        </el-col>
+        <el-col :span="7">
+            <div class="new-box" @click="goNew()">
+                <img src="./static/images/011.jpg" alt="">
+                <div><h1>澳洲本土彩妆护肤香氛集合店MECCA重磅登陆小红书</h1></div>
+                <div><p>炎炎夏日，种草剁手也需要新的“打开方式”。2019年夏天，风靡澳洲的彩妆护肤香氛集合店MECCA重磅登陆中国，正式开启小红书海外品牌店，为中国热爱美妆护肤的女性搜罗全球热销好物，畅享一站式购物盛筵。</p></div>
+            </div>
+        </el-col>
+        <el-col :span="8">
+            <div class="new-box" @click="goNew()">
+                <img src="./static/images/012.jpg" alt="" >
+                <div><h1>经典永不落幕，格纹衫重出江湖</h1></div>
+                <div><p>普通的衬衫，虽然看着很“土”，但至少不会出错。但时间一长，难免会有视觉疲劳。而经典格纹衬衫，如今款式也花样繁多，如收腰款，加长版等。而和格纹衬衫搭配的单品，其实也都是百搭类的单品，卖萌和耍酷两不误！</p></div>
+            </div>
+        </el-col>
+    </el-row>
+    <el-row :gutter="20">
+        <el-col :span="15">
+            <div class="new-box" @click="goNew()">
+                <img src="./static/images/019.jpg" alt="">
+                <div><h1>清扬携手林彦俊带你告别扁塌「制霸」全場</h1></div>
+                <div><p>6月5日，联合利华旗下去屑洗护品牌清扬,于上海举办花言橘语粉丝答谢会, 。</p></div>
+            </div>
+        </el-col>
+        <el-col :span="9">
+            <div class="new-box" @click="goNew()">
+                <img src="./static/images/014.jpg" alt="">
+                <div><h1>清扬品牌大使林彦俊出席花言橘语答谢会与粉丝近距离互动</h1></div>
+                <div><p>答谢会上，林彦俊透露自己喜欢女生发型有蓬松空气感，干净清爽的造型最能令他心动，而拥有一头圆润秀发的林彦俊， 挑选洗发水时会特别注重洗后的蓬松感</p></div>
+            </div>
+        </el-col>
+    </el-row>
+    </div>
+</script>
+
+
+
 <script>
-    new Vue({
-        el:'#app',
-        data:{
-            message:'hahaha'
+    var Foo = {
+        template: '#tem' ,
+        data() {
+            return {
+                images:[
+                    {imageIcon:'./static/images/001.jpg'},
+                    {imageIcon:'./static/images/002.jpg'},
+                    {imageIcon:'./static/images/003.jpg'},
+                    {imageIcon:'./static/images/004.jpg'},
+                ]
+            };
+        },
+    };
+    var Bar = {
+        template: '#tem1' ,
+        data() {
+            return {
+                images:[
+                    {imageIcon:'./static/images/007.jpg'},
+                    {imageIcon:'./static/images/008.jpg'},
+                    {imageIcon:'./static/images/009.jpg'},
+                ]
+            };
+        },
+    };
+    var Bar1 = { template: '#tem2' };
+    var Bar2 = {
+        template: '#tem3' ,
+        methods:{
+            goNew(){
+                this.$router.push('/bar1')
+            }
         }
-    })
+    };
+    var routes = [
+        { path: '/',redirect: '/foo' },
+        { path: '/foo', component: Foo },
+        { path: '/bar', component: Bar },
+        { path: '/bar1', component: Bar1 },
+        { path: '/bar2', component: Bar2 }
+    ];
+    var router = new VueRouter({
+        routes:routes
+    });
+    var app = new Vue({
+        router:router,
+        data:{
+            activeIndex: '1',
+            activeIndex2: '1',
+            date:'asdasdasd',
+
+        },
+        methods: {
+            handleSelect:function(key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
+    }).$mount('#app')
+
+
+
+
 </script>
 </body>
