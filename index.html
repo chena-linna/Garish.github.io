@@ -165,9 +165,9 @@
             active-text-color="#f690b7"
             router="true"
     >
-        <el-menu-item index="/bar">Home</el-menu-item>
+        <el-menu-item index="/foo">Home</el-menu-item>
         <el-menu-item index="/bar2">new</el-menu-item>
-        <el-menu-item index="/foo">img-swiper</el-menu-item>
+        <el-menu-item index="/bar">img-swiper</el-menu-item>
         <el-menu-item index="/bar1">news-message</el-menu-item>
     </el-menu>
     <div>
@@ -321,8 +321,8 @@
     };
     var routes = [
         { path: '/',redirect: '/foo' },
-        { path: '/foo', component: Foo },
-        { path: '/bar', component: Bar },
+        { path: '/foo', component: Bar },
+        { path: '/bar', component: Foo },
         { path: '/bar1', component: Bar1 },
         { path: '/bar2', component: Bar2 }
     ];
